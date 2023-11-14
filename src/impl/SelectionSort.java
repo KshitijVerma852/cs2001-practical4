@@ -1,3 +1,5 @@
+package impl;
+
 public class SelectionSort {
     public static int[] sort(int[] nums) {
         for (int x = 0; x < nums.length; x++) {
