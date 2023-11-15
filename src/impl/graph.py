@@ -1,38 +1,34 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
+
 def plot_two_csv_files(file1_path, file2_path):
-    # Read CSV files into pandas DataFrames
-    df1 = pd.read_csv(file1_path)
-    df2 = pd.read_csv(file2_path)
+    # Read CSV files using pandas
+    data1 = pd.read_csv(file1_path)
+    data2 = pd.read_csv(file2_path)
 
-    # Extract x and y data from the DataFrames
-    x_data1, y_data1 = df1['Number of elements'], df1['Time']
-    x_data2, y_data2 = df2['Number of elements'], df2['Time']
+    # Extracting both the number of elements and the time data from the pandas dataframes.
+    x_data1, y_data1 = data1['Number of elements'], data1['Time']
+    x_data2, y_data2 = data2['Number of elements'], data2['Time']
 
-    # Plot the data from the first CSV file
+    # Plotting the data from the MergeSort file onto the graph.
     plt.plot(x_data1, y_data1, label='Merge Sort', marker='', linestyle='-')
 
-    # Plot the data from the second CSV file
+    # Plotting the data from the SelectionSort file onto the graph.
     plt.plot(x_data2, y_data2, label='Selection Sort', marker='', linestyle='-')
 
-
-    # Set labels and title
+    # Setting labels and title of the graph.
     plt.title('Comparison of Sorting algorithms')
     plt.xlabel('Number of Elements')
     plt.ylabel('Time (ns)')
 
-    # Show legend
     plt.legend()
-
-    # Show the plot
     plt.show()
 
 
+# Main code execution point.
 if __name__ == "__main__":
-    # Provide the paths to your CSV files
     file1_path = '../../MergeSort.csv'
     file2_path = '../../SelectionSort.csv'
 
-    # Update column names based on your CSV files
     plot_two_csv_files(file1_path, file2_path)

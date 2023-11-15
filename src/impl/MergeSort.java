@@ -1,33 +1,38 @@
 package impl;
 
 public class MergeSort {
+    /**
+     * Sorts the given integer array using the merge sort algorithm.
+     * @param array The array of integers to be sorted.
+     * @return The final sorted integers array.
+     */
     public static int[] sort(int[] array) {
         if (array.length <= 1) {
             return array;
         }
 
-        // Find the middle point
+        // Finding the middle point of the array.
         int middle = array.length / 2;
 
-        // Split the array into two halves
+        // Splitting the array into two halves for recursion.
         int[] leftArray = new int[middle];
         int[] rightArray = new int[array.length - middle];
 
         System.arraycopy(array, 0, leftArray, 0, middle);
         System.arraycopy(array, middle, rightArray, 0, array.length - middle);
 
-        // Recursively sort the first and second halves
+        // Recursively sorting both halves.
         leftArray = sort(leftArray);
         rightArray = sort(rightArray);
 
-        // Merge the sorted halves
+        // Merge the sorted halves.
         return merge(leftArray, rightArray);
     }
 
     public static int[] merge(int[] leftArray, int[] rightArray) {
         int[] result = new int[leftArray.length + rightArray.length];
 
-        // Merge the sorted arrays
+        // Merging the sorted arrays.
         int i = 0, j = 0, k = 0;
         while (i < leftArray.length && j < rightArray.length) {
             if (leftArray[i] <= rightArray[j]) {
@@ -37,23 +42,16 @@ public class MergeSort {
             }
         }
 
-        // Copy remaining elements of leftArray[], if any
+        // Copying the remaining elements of leftArray[].
         while (i < leftArray.length) {
             result[k++] = leftArray[i++];
         }
 
-        // Copy remaining elements of rightArray[], if any
+        // Copying remaining elements of rightArray[].
         while (j < rightArray.length) {
             result[k++] = rightArray[j++];
         }
 
         return result;
-    }
-
-    public static void printArray(int[] array) {
-        for (int value : array) {
-            System.out.print(value + " ");
-        }
-        System.out.println();
     }
 }

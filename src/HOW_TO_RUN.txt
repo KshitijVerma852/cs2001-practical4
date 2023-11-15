@@ -1,0 +1,10 @@
+First we have to compile and run the Java program:
+    From the impl folder run:
+        javac *.java
+    Then go back to the src directory and run:
+        java impl.Main
+
+Then run the Python program:
+    From the impl folder run:
+        pip install pandas matplotlib
+        python graph.py
