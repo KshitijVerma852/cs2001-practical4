@@ -1,48 +1,67 @@
 package impl;
 
-
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Random;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        File selectionSortCsv = new File("./SelectionSort.csv");
-        File mergeSortCsv = new File("./MergeSort.csv");
+        FileWriter selectionSortWriter = new FileWriter("./SelectionSort.csv");
+        FileWriter mergeSortWriter = new FileWriter("./MergeSort.csv");
 
-        FileWriter selectionSortWriter = new FileWriter(selectionSortCsv);
-        FileWriter mergeSortWriter = new FileWriter(mergeSortCsv);
+        final int AVERAGE = 20000;
+        final int NUM_OF_ELEMENTS = 150;
 
         selectionSortWriter.write("Number of elements,Time");
         mergeSortWriter.write("Number of elements,Time");
 
-
-        for (int i = 0; i < 200; i++) {
+        for (int i = 0; i < NUM_OF_ELEMENTS; i++) {
             int[] nums = new int[i];
 
             for (int x = 0; x < nums.length; x++) {
                 nums[x] = (new Random()).nextInt(200);
             }
 
-            long startTime = System.nanoTime();
-            nums = SelectionSort.sort(nums);
-            long endTime = System.nanoTime();
+            long totalTime = 0;
+
+            for (int x = 0; x < AVERAGE; x++) {
+                long startTime = System.nanoTime();
+                SelectionSort.sort(nums);
+                long endTime = System.nanoTime();
+
+                totalTime += endTime - startTime;
+            }
+
+
+
+
+            long time = totalTime / AVERAGE;
 
             String data = "\n" + nums.length +
                     "," +
-                    (endTime - startTime);
+                    (time);
             selectionSortWriter.write(data);
 
-            startTime = System.nanoTime();
-            nums = MergeSort.sort(nums);
-            endTime = System.nanoTime();
+            totalTime = 0;
+
+            for (int x = 0; x < AVERAGE; x++) {
+                long startTime = System.nanoTime();
+                nums = MergeSort.sort(nums);
+                long endTime = System.nanoTime();
+
+                totalTime += endTime - startTime;
+            }
+
+            time = totalTime / AVERAGE;
 
             data = "\n" + nums.length +
                     "," +
-                    (endTime - startTime);
+                    (time);
             mergeSortWriter.write(data);
+
         }
+        mergeSortWriter.close();
+        selectionSortWriter.close();
+        System.out.println("done");
     }
 }

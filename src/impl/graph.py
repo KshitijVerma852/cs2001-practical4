@@ -11,21 +11,23 @@ def plot_two_csv_files(file1_path, file2_path):
     x_data2, y_data2 = df2['Number of elements'], df2['Time']
 
     # Plot the data from the first CSV file
-    plt.plot(x_data1, y_data1, label='Data from File 1', marker='o', linestyle='-')
+    plt.plot(x_data1, y_data1, label='Merge Sort', marker='', linestyle='-')
 
     # Plot the data from the second CSV file
-    plt.plot(x_data2, y_data2, label='Data from File 2', marker='o', linestyle='-')
+    plt.plot(x_data2, y_data2, label='Selection Sort', marker='', linestyle='-')
+
 
     # Set labels and title
-    plt.title('Comparison of Two CSV Files')
-    plt.xlabel('X-axis Label')
-    plt.ylabel('Y-axis Label')
+    plt.title('Comparison of Sorting algorithms')
+    plt.xlabel('Number of Elements')
+    plt.ylabel('Time (ns)')
 
     # Show legend
     plt.legend()
 
     # Show the plot
     plt.show()
+
 
 if __name__ == "__main__":
     # Provide the paths to your CSV files
